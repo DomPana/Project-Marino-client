@@ -1,0 +1,20 @@
+import socket
+
+def clientprogram():
+    client = socket.socket(socket.AFINET, socket.SOCKSTREAM)
+    client.connect(('127.0.0.1', 9999))
+
+    print("Connected to the server")
+
+    while True:
+        command = input("Enter command: ")
+        if command.lower() == 'exit':
+            break
+        client.send(command.encode())
+        response = client.recv(4096).decode()
+        print("Response from server:", response)
+
+    client.close()
+
+if _name == "__main":
+    client_program()
